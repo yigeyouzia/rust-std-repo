@@ -46,10 +46,25 @@ fn main() {
     println!("{}", r2);
 
     let t1: String = String::from("test str");
-    let t2: String = take_adn_give_back(t1);
+    let t2: String = take_adn_give_back(t1.clone());
     println!("t1 {}", t1);
+
+    //  ************************ 借用 将引用作为参数传给函数
+    print!("length is : {}", calculate_length(&t1));
+    // 可变引用
+    let mut s1: String = String::from("test");
+    print!("可变引用 is : {}", calculate_length2(&mut s1));
 }
 
 fn take_adn_give_back(a_string: String) -> String {
     a_string
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+fn calculate_length2(s: &mut String) -> usize {
+    s.push_str(", world");
+    s.len()
 }
